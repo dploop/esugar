@@ -30,8 +30,8 @@ walk_form({function, _Line, _Name, _Arity, _Clauses} = Function) ->
     throw:{ErrLine, ErrArgument} ->
         ?del_scope_stack(), ?del_pattern(),
         {error, {ErrLine, ?MODULE, ErrArgument}};
-    ErrType:ErrReason ->
-        erlang:raise(ErrType, ErrReason, erlang:get_stacktrace())
+    ErrType:ErrReason:StackTrace ->
+        erlang:raise(ErrType, ErrReason, StackTrace)
     end;
 walk_form(Forms) when is_list(Forms) ->
     [walk_form(Form) || Form <- Forms];
