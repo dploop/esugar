@@ -1,2 +1,4 @@
-/_build/
-/rebar.lock
+.rebar/
+_build/
+ebin/
+rebar.lock
